@@ -28,6 +28,8 @@
 
                             <th class="min-w-200px">#</th>
                             <th class="min-w-150px">{{ __('dashboard.name') }}</th>
+                            <th class="min-w-150px">{{ __('dashboard.email') }}</th>
+                            <th class="min-w-150px">Type User</th>
                         </tr>
                     </thead>
                     <!--end::Table head-->
@@ -42,6 +44,12 @@
 
                                 <td>
                                     {{ $user->name }}
+                                </td>
+                                <td>
+                                    {{ $user->email }}
+                                </td>
+                                <td>
+                                    {{ $user->type }}
                                 </td>
 
                             </tr>

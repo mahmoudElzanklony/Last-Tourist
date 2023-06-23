@@ -29,8 +29,9 @@ class HomeController extends Controller
     public function showServices()
     {
         $services = Services::all();
+        $categories = Categories::all();
 
-        return view('services', compact('services'));
+        return view('services', compact('services', 'categories'));
     }
     public function payment($id)
     {
@@ -58,5 +59,11 @@ class HomeController extends Controller
             'order_date' => now(),
         ]);
         return Redirect::route('home');
+    }
+    public function getServices(Request $request, $id)
+    {
+        $category = Categories::findOrFail($id);
+        $services = $category->services;
+        return response()->json($services);
     }
 }

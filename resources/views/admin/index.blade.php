@@ -242,7 +242,6 @@
                 <!--end::Header-->
                 <!--begin::Card body-->
                 <div class="card-body d-flex justify-content-between flex-column pb-1 px-0">
-
                     <!--begin::Chart-->
                     <div id="kt_charts_widget_3" class="min-h-auto ps-4 pe-6" style="height: 300px"></div>
                     <!--end::Chart-->
@@ -269,20 +268,12 @@
                         <!--begin::Item-->
                         <div class="d-flex align-items-sm-center mb-7">
                             <!--begin::Symbol-->
+                            <div class="symbol symbol-60px symbol-2by3 me-4">
+                                <div class="symbol-label"
+                                    style="background-image: url({{ asset('images/services/' . ($order->service->image->first()->path ?? 'default.png')) }})">
+                                </div>
+                            </div>
 
-                            @if (!empty($order->service->image->first()->path))
-                                <div class="symbol symbol-60px symbol-2by3 me-4">
-                                    <div class="symbol-label"
-                                        style="background-image: url({{ asset('images/services/' . $order->service->image->first()->path) }})">
-                                    </div>
-                                </div>
-                            @else
-                                <div class="symbol symbol-60px symbol-2by3 me-4">
-                                    <div class="symbol-label"
-                                        style="background-image: url({{ asset('images/services/default.png') }})">
-                                    </div>
-                                </div>
-                            @endif
                             <!--end::Symbol-->
                             <!--begin::Title-->
                             <div class="d-flex flex-row-fluid flex-wrap align-items-center">
@@ -319,19 +310,11 @@
                         <!--begin::Item-->
                         <div class="d-flex align-items-sm-center mb-7">
                             <!--begin::Symbol-->
-                            @if (!empty($service->image->first()->path))
-                                <div class="symbol symbol-60px symbol-2by3 me-4">
-                                    <div class="symbol-label"
-                                        style="background-image: url({{ asset('images/services/' . $service->image->first()->path) }})">
-                                    </div>
+                            <div class="symbol symbol-60px symbol-2by3 me-4">
+                                <div class="symbol-label"
+                                    style="background-image: url({{ asset('images/services/' . ($service->image->first()->path ?? 'default.png')) }})">
                                 </div>
-                            @else
-                                <div class="symbol symbol-60px symbol-2by3 me-4">
-                                    <div class="symbol-label"
-                                        style="background-image: url({{ asset('images/services/default.png') }})">
-                                    </div>
-                                </div>
-                            @endif
+                            </div>
                             <!--end::Symbol-->
                             <!--begin::Content-->
                             <div class="d-flex flex-row-fluid align-items-center flex-wrap my-lg-0 me-2">
@@ -345,14 +328,14 @@
                                 <div class="d-flex align-items-center">
                                     <div class="me-6">
                                         <i class="fa fa-star-half-alt me-1 text-warning fs-5"></i>
-                                        <span class="text-gray-800 fw-bold">{{round($service->avg_rating, 2) }}</span>
+                                        <span class="text-gray-800 fw-bold">{{ round($service->avg_rating, 2) }}</span>
                                     </div>
-                                    <a href="#" class="btn btn-icon btn-light btn-sm border-0">
+                                    {{-- <a href="#" class="btn btn-icon btn-light btn-sm border-0">
                                         <i class="ki-duotone ki-arrow-right fs-2 text-primary">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                         </i>
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <!--end::Section-->
                             </div>

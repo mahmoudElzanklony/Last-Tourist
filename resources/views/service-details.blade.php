@@ -338,14 +338,9 @@
                                     <p class="mt-3 mb-4">
                                         {{ $service->description }}
                                     </p>
-                                    @if (!empty($service->image->first()->path))
-                                        <img class="img-fluid shadow rounded"
-                                            src="{{ asset('images/services/' . $service->image->first()->path) }}"
-                                            alt="">
-                                    @else
-                                        <img class="img-fluid shadow rounded"
-                                            src="{{ asset('images/services/default.png') }}" alt="">
-                                    @endif
+                                    <img class="img-fluid shadow rounded"
+                                        src="{{ asset('/images/services/' . ($service->image->first()->path ?? 'default.png')) }}"
+                                        alt="">
                                     <hr>
                                     <div
                                         class="more-info d-flex flex-column flex-lg-row align-items-center justify-content-lg-between">

@@ -32,6 +32,7 @@ Route::get('/services', [HomeController::class, 'showServices'])->name('all.serv
 Route::get('/payment/{id}', [HomeController::class, 'payment'])->name('payment.show');
 Route::post('/payment/create', [HomeController::class, 'paymentAdd'])->name('payment.create');
 Route::post('/customer-reviews', [CustomerReviewController::class, 'store'])->name('customer-reviews.store.user');
+Route::get('/category/{id}/services', [HomeController::class, 'getServices'])->name('category.services');
 
 require __DIR__ . '/auth.php';
 Route::get('set-locale/{locale}', [LocaleController::class, 'setLocale'])->name('set.locale');

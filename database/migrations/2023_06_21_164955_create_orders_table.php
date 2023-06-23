@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->text('customer')->nullable();
             $table->foreignId('service_id')->constrained('services');
             $table->date('order_date');
-            $table->string('payment_type')->default('paypal');
+            $table->string('payment_type')->default('paypal')->comment('payment type paypal or visa');;
             $table->decimal('total_amount', 8, 2);
             $table->softDeletes();
             $table->timestamps();

@@ -21,8 +21,16 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page">All</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page">Service1</a>
+                @foreach ($categories as $category)
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-category-id="{{ $category->id }}">{{ $category->name }}</a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="">{{ $category->name }}</a>
+                    </li> --}}
+                @endforeach
+                {{-- <li class="nav-item">
+                    <a class="nav-link" aria-current="page">Service1</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link">Service2</a>
@@ -32,7 +40,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link">Service4</a>
-                </li>
+                </li> --}}
             </ul>
         </div>
         <div class="container">
@@ -267,19 +275,17 @@
                 <div class="col-lg-9">
                     <div class="services-deps mt-3">
                         <div class="row g-5">
-                            <div class="col-lg-6" box-type="service1">
-                                <a href="{{ url('/service-details') }}">
+                            @foreach ($services as $service)
+                                <div class="col-lg-6" box-type="service1">
+                                    {{-- <a href="{{ url('/service-details') }}"> --}}
                                     <div class="card px-5 py-4 text-center border-0 shadow">
                                         <div class="service-price shadow rounded-start">$300</div>
-                                        <h5><span class="text-main">AZUR</span> HOTELS</h5>
+                                        <h5> {{ $service->name }}</h5>
                                         <p class="mt-3 mb-4">
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                            Hic minus dolorem quo dignissimos. Animi asperiores
-                                            corporis accusamus, placeat expedita eligendi,
-                                            fugiat dolorem tempora, quasi officia minus architecto
-                                            reprehenderit porro omnis.
+                                            {{ $service->description }}
                                         </p>
-                                        <img class="img-fluid shadow rounded" src="{{ asset('/imgs/hotels.jpeg') }}"
+                                        <img class="img-fluid shadow rounded"
+                                            src="{{ asset('/images/services/' . ($service->image->first()->path ?? 'default.png')) }}"
                                             alt="">
                                         <hr>
                                         <div
@@ -288,9 +294,11 @@
                                                 <span class="material-symbols-outlined text-muted time">
                                                     schedule
                                                 </span>
-                                                <span class="ms-1 text-muted">3 Hours</span>
+                                                <span
+                                                    class="ms-1 text-muted">{{ $service->created_at->diffForHumans() }}</span>
                                             </div>
-                                            <a href="" class="btn info-btn mt-2 mt-lg-0">
+                                            <a href="{{ route('service.details.show', ['id' => $service->id]) }}"
+                                                class="btn info-btn mt-2 mt-lg-0">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     Request info
                                                     <span class="material-symbols-outlined">
@@ -301,148 +309,10 @@
                                         </div>
                                     </div>
 
-                                </a>
-                            </div>
-                            <div class="col-lg-6" box-type="service1">
-                                <a href="{{ url('/service-details') }}">
-                                    <div class="card px-5 py-4 text-center border-0 shadow">
-                                        <div class="service-price shadow rounded-start">$300</div>
-                                        <h5><span class="text-main">NILE</span> CRUISES</h5>
-                                        <p class="mt-3 mb-4">
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                            Hic minus dolorem quo dignissimos. Animi asperiores
-                                            corporis accusamus, placeat expedita eligendi,
-                                            fugiat dolorem tempora, quasi officia minus architecto
-                                            reprehenderit porro omnis.
-                                        </p>
-                                        <img class="img-fluid shadow rounded" src="{{ asset('/imgs/nile.jpeg') }}"
-                                            alt="">
-                                        <hr>
-                                        <div
-                                            class="more-info d-flex flex-column flex-lg-row align-items-center justify-content-lg-between">
-                                            <div class="d-flex align-items-center">
-                                                <span class="material-symbols-outlined text-muted time">
-                                                    schedule
-                                                </span>
-                                                <span class="ms-1 text-muted">3 Hours</span>
-                                            </div>
-                                            <a href="" class="btn info-btn mt-2 mt-lg-0">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    Request info
-                                                    <span class="material-symbols-outlined">
-                                                        chevron_right
-                                                    </span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-6" box-type="service3">
-                                <a href="{{ url('/service-details') }}">
-                                    <div class="card px-5 py-4 text-center border-0 shadow">
-                                        <div class="service-price shadow rounded-start">$200</div>
-                                        <h5><span class="text-main">EXCURSIONS</span> & TOURS</h5>
-                                        <p class="mt-3 mb-4">
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                            Hic minus dolorem quo dignissimos. Animi asperiores
-                                            corporis accusamus, placeat expedita eligendi,
-                                            fugiat dolorem tempora, quasi officia minus architecto
-                                            reprehenderit porro omnis.
-                                        </p>
-                                        <img class="img-fluid shadow rounded" src="{{ asset('/imgs/tour.jpeg') }}"
-                                            alt="">
-                                        <hr>
-                                        <div
-                                            class="more-info d-flex flex-column flex-lg-row align-items-center justify-content-lg-between">
-                                            <div class="d-flex align-items-center">
-                                                <span class="material-symbols-outlined text-muted time">
-                                                    schedule
-                                                </span>
-                                                <span class="ms-1 text-muted">3 Hours</span>
-                                            </div>
-                                            <a href="" class="btn info-btn mt-2 mt-lg-0">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    Request info
-                                                    <span class="material-symbols-outlined">
-                                                        chevron_right
-                                                    </span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-6" box-type="service2">
-                                <a href="{{ url('/service-details') }}">
-                                    <div class="card px-5 py-4 text-center border-0 shadow">
-                                        <div class="service-price shadow rounded-start">$230</div>
-                                        <h5><span class="text-main">EXCURSIONS</span> & TOURS</h5>
-                                        <p class="mt-3 mb-4">
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                            Hic minus dolorem quo dignissimos. Animi asperiores
-                                            corporis accusamus, placeat expedita eligendi,
-                                            fugiat dolorem tempora, quasi officia minus architecto
-                                            reprehenderit porro omnis.
-                                        </p>
-                                        <img class="img-fluid shadow rounded" src="{{ asset('/imgs/dolphin.jpeg') }}"
-                                            alt="">
-                                        <hr>
-                                        <div
-                                            class="more-info d-flex flex-column flex-lg-row align-items-center justify-content-lg-between">
-                                            <div class="d-flex align-items-center">
-                                                <span class="material-symbols-outlined text-muted time">
-                                                    schedule
-                                                </span>
-                                                <span class="ms-1 text-muted">3 Hours</span>
-                                            </div>
-                                            <a href="" class="btn info-btn mt-2 mt-lg-0">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    Request info
-                                                    <span class="material-symbols-outlined">
-                                                        chevron_right
-                                                    </span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-6" box-type="service4">
-                                <a href="{{ url('/service-details') }}">
-                                    <div class="card px-5 py-4 text-center border-0 shadow">
-                                        <div class="service-price shadow rounded-start">$350</div>
-                                        <h5><span class="text-main">EXCURSIONS</span> & TOURS</h5>
-                                        <p class="mt-3 mb-4">
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                            Hic minus dolorem quo dignissimos. Animi asperiores
-                                            corporis accusamus, placeat expedita eligendi,
-                                            fugiat dolorem tempora, quasi officia minus architecto
-                                            reprehenderit porro omnis.
-                                        </p>
-                                        <img class="img-fluid shadow rounded" src="{{ asset('/imgs/diving.jpeg') }}"
-                                            alt="">
-                                        <hr>
-                                        <div
-                                            class="more-info d-flex flex-column flex-lg-row align-items-center justify-content-lg-between">
-                                            <div class="d-flex align-items-center">
-                                                <span class="material-symbols-outlined text-muted time">
-                                                    schedule
-                                                </span>
-                                                <span class="ms-1 text-muted">3 Hours</span>
-                                            </div>
-                                            <a href="" class="btn info-btn mt-2 mt-lg-0">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    Request info
-                                                    <span class="material-symbols-outlined">
-                                                        chevron_right
-                                                    </span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                                    {{-- </a> --}}
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -451,3 +321,35 @@
     </div>
     </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.nav-link').click(function(e) {
+            e.preventDefault();
+
+            var categoryId = $(this).data('category-id');
+
+            $.ajax({
+                url: 'category/' + categoryId + '/services',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // Update the HTML with the services data
+                    var servicesContainer = $('.services-container');
+                    servicesContainer.empty();
+                    $.each(response, function(index, service) {
+                        var serviceHtml = '<div class="service">' +
+                            '<h3>' + service.name + '</h3>' +
+                            '<p>' + service.description + '</p>' +
+                            '</div>';
+
+                        servicesContainer.append(serviceHtml);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
