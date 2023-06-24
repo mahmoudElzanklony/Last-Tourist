@@ -227,9 +227,7 @@
                                 <p class="mt-3 mb-4">
                                     {{ $service->description }}
                                 </p>
-                                <img class="img-fluid shadow rounded"
-                                        src="{{ asset('images/services/' . $service->image->first()->path) }}"
-                                        alt="services-image">
+                               
                                 @if (!empty($service->image->first()->path))
                                     <img class="img-fluid shadow rounded"
                                         src="{{ asset('images/services/' . $service->image->first()->path) }}"
