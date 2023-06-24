@@ -19,7 +19,7 @@ class AdminController extends Controller
             ->groupBy('services.id')
             ->orderBy('avg_rating', 'desc')
             ->take(10)
-            ->get();            
+            ->get();
         return view('admin.index', compact('last10Orders', 'topServices'));
     }
     public function users()
